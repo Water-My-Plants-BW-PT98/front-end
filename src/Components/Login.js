@@ -60,7 +60,7 @@ const Login = () => {
                 <StyledInput type="password"  name="password" id="passwordInput" onChange={onChange}/>
                 
                 <StyledButton>
-                    Sign Up!
+                    Login
                 </StyledButton>
             </StyledForm>
         </StyledDiv>
