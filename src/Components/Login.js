@@ -27,43 +27,38 @@ const StyledButton = styled.button`
     margin: 5%;
 `
 
-const Signup = () => {
-    const [formData, setFormData] = useState({
+const Login = () => {
+    const [loginData, setLoginData] = useState({
         username: '',
-        phone: '',
         password: ''
     })
 
     const onChange = event => {
-        setFormData({
-            ...formData, 
+        setLoginData({
+            ...loginData, 
             [event.target.name]: event.target.value,
         })
     }
 
     const onSubmit = event => {
         event.preventDefault();
-        axios.post('', { formData })
+        axios.post('', { loginData })
     }
 
     return(
         <StyledDiv>
-            <StyledH2>Get Started Now:</StyledH2>
+            <StyledH2>Login</StyledH2>
             <StyledForm onSubmit={onSubmit}> 
                 <label htmlFor="usernameInput">
                     Username
                 </label>
                 <StyledInput type="text" name="username" id="usernameInput" onChange={onChange}/>
                     
-                <label htmlFor="phoneInput">
-                    Phone
-                </label>
-                <StyledInput type="tel" name="phone" id="phoneInput" onChange={onChange}/>
-                    
                 <label htmlFor="passwordInput">
                     Password
                 </label>
                 <StyledInput type="password"  name="password" id="passwordInput" onChange={onChange}/>
+                
                 <StyledButton>
                     Sign Up!
                 </StyledButton>
@@ -72,4 +67,4 @@ const Signup = () => {
     )
 };
 
-export default Signup;
+export default Login;
