@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios'
 import styled from 'styled-components';
+import { axiosWithAuth } from '../Utils/AxiosWithAuth'
+import { useHistory, Link } from "react-router-dom";
+
+//REDUX
+import { connect } from 'react-redux';
+import { getPlants } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -27,7 +33,10 @@ const StyledButton = styled.button`
     margin: 5%;
 `
 
-const Login = () => {
+const Login = (props) => {
+
+   const { push } = useHistory()
+
     const [loginData, setLoginData] = useState({
         username: '',
         password: ''
@@ -42,7 +51,14 @@ const Login = () => {
 
     const onSubmit = event => {
         event.preventDefault();
-        axios.post('', { loginData })
+        axiosWithAuth().post("/login", loginData)
+            .then((res) => {    
+               console.log("LOGIN SUCCESS", res);     
+               window.localStorage.setItem("token", res.data.token);
+               props.getPlants(); // THIS CAN BE MOVED TO THE DISPLAY PAGE ?
+               push("/"); // ADD URL OF "DISPLAY" PAGE OF CARDS
+            })
+            .catch((err) => console.log(err));
     }
 
     return(
@@ -67,4 +83,8 @@ const Login = () => {
     )
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+   return {state};
+ }
+
+export default connect( mapStateToProps, {getPlants} )(Login);

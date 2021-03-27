@@ -5,12 +5,12 @@ import './index.css';
 import App from './App';
 
 // redux imports
-import { rootReducer } from './Reducers/index'
+import { plantsReducer } from './Reducers/plantsReducer'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-let store = createStore( rootReducer, applyMiddleware(thunk))
+let store = createStore( plantsReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
    <Provider store={store}>
