@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 
 // redux imports
-import { rootReducer } from './reducers/index'
+import { rootReducer } from './Reducers/index'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
