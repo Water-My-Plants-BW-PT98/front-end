@@ -16,9 +16,9 @@ const initialState = {
    switch (action.type) {
 
       case GET_PLANTS:
-         return {...state, plants: [...action.payload]} // THIS MAY NEED TO BE CORRECTED
+         return {...state, plants: [...action.payload]} 
 
      default:
-       return state;
+         return state;
    }
  };
