@@ -56,7 +56,7 @@ const Login = (props) => {
                console.log("LOGIN SUCCESS", res);     
                window.localStorage.setItem("token", res.data.token);
                props.getPlants(); // THIS CAN BE MOVED TO THE DISPLAY PAGE ?
-               push("/"); // ADD URL OF "DISPLAY" PAGE OF CARDS
+               push("/CardDisplay"); // ADD URL OF "DISPLAY" PAGE OF CARDS
             })
             .catch((err) => console.log(err));
     }
