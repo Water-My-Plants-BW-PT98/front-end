@@ -2,10 +2,6 @@ import { useState } from 'react';
 import axios from 'axios'
 import styled from 'styled-components';
 
-//REDUX
-import { connect } from 'react-redux';
-import { addPlant } from "../Actions/index";
-
 const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -31,7 +27,7 @@ const StyledButton = styled.button`
     margin: 5%;
 `
 
-const AddPlant = (props) => {
+const EditPlant = () => {
     const [plantData, setPlantData] = useState({
         nickname: '',
         species: '',
@@ -47,12 +43,12 @@ const AddPlant = (props) => {
 
     const onSubmit = event => {
         event.preventDefault();
-        props.addPlant(plantData)
-      }
+        axios.post('', { plantData })
+    }
 
     return(
         <StyledDiv>
-            <StyledH2>New Plant?</StyledH2>
+            <StyledH2>Edit Plant?</StyledH2>
             <StyledForm onSubmit={onSubmit}> 
                 
             <label htmlFor="nicknameInput">
@@ -77,15 +73,11 @@ const AddPlant = (props) => {
                
                 
                 <StyledButton>
-                    Add Plant
+                    Edit Plant
                 </StyledButton>
             </StyledForm>
         </StyledDiv>
     )
 };
 
-const mapStateToProps = (state) => {
-   return {state};
- }
-
-export default connect( mapStateToProps, {addPlant} )(AddPlant);
+export default EditPlant;

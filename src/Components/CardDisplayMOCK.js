@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 //REDUX
 import { connect } from 'react-redux';
-import { } from "../Actions/index";
+import { editPlant, deletePlant } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -35,7 +35,7 @@ const CardDisplay = (props) => {
                             <p>{item.species}</p>
                             <p>{item.h20Frequency}</p>
                             <button>Edit Plant</button>
-                            <button>Remove Plant</button>
+                            <button onClick={() => props.deletePlant(item.id)} >Remove Plant</button>
                         </Plant>  
                 })}
             </div>
@@ -47,4 +47,4 @@ const mapStateToProps = (state) => {
    return {state};
  }
 
-export default connect( mapStateToProps, {} )(CardDisplay);
+export default connect( mapStateToProps, { editPlant, deletePlant} )(CardDisplay);
