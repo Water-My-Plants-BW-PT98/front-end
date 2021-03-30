@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -23,18 +24,23 @@ const Plant = styled.div`
 `;
 
 const CardDisplay = (props) => {
-   console.log("STATE",props)
+
+   const history  = useHistory();
+
+   const routeToEdit = (itemId) => {
+      history.push(`/EditPlant/${itemId}`)
+   }
 
     return(
         <StyledDiv>
             <h2>My Plants</h2>
             <div>
-                {props.state.plants.map (item => {
+                {props.state.plantsReducer.plants.map (item => {
                         return <Plant key={item.id}>
                             <h3>{item.nickname}</h3>
                             <p>{item.species}</p>
-                            <p>{item.h20Frequency}</p>
-                            <button>Edit Plant</button>
+                            <p>{item.h2o_frequency}</p>
+                            <button onClick={()=> routeToEdit(item.id) }>Edit Plant</button>
                             <button onClick={() => props.deletePlant(item.id)} >Remove Plant</button>
                         </Plant>  
                 })}

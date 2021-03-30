@@ -1,7 +1,8 @@
 import { 
    GET_PLANTS,
    ADD_PLANT,
-   DELETE_PLANT } from '../Actions/index'
+   DELETE_PLANT,
+   EDIT_PLANT } from '../Actions/index'
 
 const initialState = {
    plants : [
@@ -29,6 +30,12 @@ const initialState = {
             ...state,
             plants: state.plants.filter( plant => 
                plant.id !== action.payload),
+         }
+      case EDIT_PLANT:
+         return {
+            ...state, 
+            plants: state.plants.map( plant => 
+               plant.id === action.payload.id ? action.payload : plant )
          }
 
      default:

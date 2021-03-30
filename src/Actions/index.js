@@ -30,8 +30,16 @@ export const addPlant = (plantData) => {
 
 }
 
-export const editPlant = () => {
-   
+export const editPlant = (plantToEdit) => {
+   return dispatch => {
+      axiosWithAuth().put(`/plants/${plantToEdit.id}`,plantToEdit)
+      .then( (response) => {
+         if( response.status === 200 ){
+            dispatch({ type: EDIT_PLANT, payload: plantToEdit });
+         }
+      })
+      .catch(err => console.log("EDIT ERROR:", err));
+   }
 }
 
 export const deletePlant = (plantId) => {
