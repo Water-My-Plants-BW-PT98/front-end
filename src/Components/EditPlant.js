@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 //REDUX
 import { connect } from 'react-redux';
-import { addPlant } from "../Actions/index";
+import { editPlant } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -30,12 +31,36 @@ const StyledButton = styled.button`
     margin: 5%;
 `
 
-const AddPlant = (props) => {
+const EditPlant = (props) => {
+
+console.log(props.state.plantsReducer.plants)
+
+   const {id} = useParams();
+
+   const getPlantToEdit = (idToEdit) => {
+     
+      for( let i = 0; i < props.state.plantsReducer.plants.length; i++ ){
+
+         if( props.state.plantsReducer.plants[i].id === parseInt(idToEdit) ){
+            const plantInfo = { 
+               id: props.state.plantsReducer.plants[i].id,
+               nickname: props.state.plantsReducer.plants[i].nickname,
+               species: props.state.plantsReducer.plants[i].species,
+               h2o_frequency: props.state.plantsReducer.plants[i].h2o_frequency
+            }
+            return plantInfo
+         }
+      }
+   }
+
+   const plantToEdit = getPlantToEdit(id)
+
     const [plantData, setPlantData] = useState({
-        nickname: '',
-        species: '',
-        h2o_frequency: ''
-    })
+        id: plantToEdit ? plantToEdit.id : null,
+        nickname: plantToEdit ? plantToEdit.nickname : "",
+        species: plantToEdit ? plantToEdit.species : "",
+        h2o_frequency: plantToEdit ? plantToEdit.h2o_frequency : ""
+    },[])
 
     const onChange = event => {
         setPlantData({
@@ -46,12 +71,12 @@ const AddPlant = (props) => {
 
     const onSubmit = event => {
         event.preventDefault();
-        props.addPlant(plantData)
-      }
+        props.editPlant(plantData)
+    }
 
     return(
         <StyledDiv>
-            <StyledH2>New Plant?</StyledH2>
+            <StyledH2>Edit Plant?</StyledH2>
             <StyledForm onSubmit={onSubmit}> 
                 
             <label htmlFor="nicknameInput">
@@ -71,12 +96,8 @@ const AddPlant = (props) => {
                 </label>
                 <StyledInput type="text" name="h2o_frequency" id="h2oFrequencyInput" onChange={onChange}/>
 
-                
-                    
-               
-                
                 <StyledButton>
-                    Add Plant
+                    Edit Plant
                 </StyledButton>
             </StyledForm>
         </StyledDiv>
@@ -87,4 +108,4 @@ const mapStateToProps = (state) => {
    return {state};
  }
 
-export default connect( mapStateToProps, {addPlant} )(AddPlant);
+export default connect(mapStateToProps, {editPlant})(EditPlant);
