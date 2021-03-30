@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios'
 import styled from 'styled-components';
 import { axiosWithAuth } from '../Utils/AxiosWithAuth'
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //REDUX
 import { connect } from 'react-redux';
