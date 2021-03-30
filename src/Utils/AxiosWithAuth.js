@@ -9,7 +9,7 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     headers: { authorization: token },
-    //baseURL: 'https://unit4-backend-watermyplants.herokuapp.com/'
-    baseURL: 'http://localhost:5000/'
+    baseURL: 'https://unit4-backend-watermyplants.herokuapp.com/'
+    //baseURL: 'http://localhost:5000/'
   });
 };
