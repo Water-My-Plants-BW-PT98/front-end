@@ -21,6 +21,10 @@ const StyledH2 = styled.h2`
     font-family: Cinzel, serif;
 `
 
+const StyledH3 = styled.h3`
+    font-family: Cinzel, serif;
+`
+
 const Plant = styled.div`
    border: 1px solid #F9F9F9;
    margin: 1em;
@@ -45,7 +49,7 @@ const CardDisplay = (props) => {
             <div>
                 {props.state.plantsReducer.plants.map (item => {
                         return <Plant key={item.id}>
-                            <h3>{item.nickname}</h3>
+                            <StyledH3>{item.nickname}</StyledH3>
                             <p>{item.species}</p>
                             <p>{item.h2o_frequency}</p>
                             <button onClick={()=> routeToEdit(item.id) }>Edit Plant</button>
