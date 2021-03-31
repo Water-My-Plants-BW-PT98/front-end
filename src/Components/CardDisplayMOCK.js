@@ -12,6 +12,11 @@ const StyledDiv = styled.div`
     justify-content: center;
     align-items: center;
 `
+
+const StyledH2 = styled.h2`
+    font-family: Cinzel, serif;
+`
+
 const Plant = styled.div`
    border: 1px solid black;
    margin: 1em;
@@ -32,7 +37,7 @@ const CardDisplay = (props) => {
 
     return(
         <StyledDiv>
-            <h2>My Plants</h2>
+            <StyledH2>My Plants</StyledH2>
             <div>
                 {props.state.plantsReducer.plants.map (item => {
                         return <Plant key={item.id}>

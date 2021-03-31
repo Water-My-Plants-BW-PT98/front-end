@@ -12,9 +12,10 @@ const StyledDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Fauna One', serif;
 `
 const StyledH2 = styled.h2`
-    
+    font-family: Cinzel, serif;
 `
 
 const StyledForm = styled.form`

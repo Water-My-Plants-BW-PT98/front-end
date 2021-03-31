@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
+
+import Header from './Components/Header'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
 import AddPlant from './Components/AddPlant'
@@ -11,6 +13,7 @@ import CardDisplayMOCK from './Components/CardDisplayMOCK'
 function App() {
   return (
     <>
+      <Header />
       <Signup />
       <Login />
       <AddPlant />
