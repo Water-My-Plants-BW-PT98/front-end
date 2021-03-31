@@ -21,7 +21,12 @@ const StyledH2 = styled.h2`
 `
 
 const StyledH3 = styled.h3`
+    text-align: center;
     font-family: Cinzel, serif;
+`
+
+const StyledP = styled.p`
+    text-align: center;
 `
 
 const Plant = styled.div`
