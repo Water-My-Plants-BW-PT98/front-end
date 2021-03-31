@@ -25,9 +25,6 @@ const StyledH3 = styled.h3`
 `
 
 const Plant = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     border: 1px solid #F9F9F9;
     margin: 1em;
     padding:.5em;
