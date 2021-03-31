@@ -8,9 +8,11 @@ import { editPlant, deletePlant } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    font-family: 'Fauna One', serif;
     background-color: #2F97C1;
     color: #33261D;
 `
@@ -20,7 +22,7 @@ const StyledH2 = styled.h2`
 `
 
 const Plant = styled.div`
-   border: 1px solid black;
+   border: 1px solid #F9F9F9;
    margin: 1em;
    padding:.5em;
 
