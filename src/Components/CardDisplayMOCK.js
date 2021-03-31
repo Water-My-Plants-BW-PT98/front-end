@@ -54,8 +54,8 @@ const CardDisplay = (props) => {
                 {props.state.plantsReducer.plants.map (item => {
                         return <Plant key={item.id}>
                             <StyledH3>{item.nickname}</StyledH3>
-                            <p>{item.species}</p>
-                            <p>{item.h2o_frequency}</p>
+                            <StyledP>{item.species}</StyledP>
+                            <StyledP>{item.h2o_frequency}</StyledP>
                             <button onClick={()=> routeToEdit(item.id) }>Edit Plant</button>
                             <button onClick={() => props.deletePlant(item.id)} >Remove Plant</button>
                         </Plant>  
