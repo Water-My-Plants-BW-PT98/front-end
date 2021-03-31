@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
@@ -24,6 +25,7 @@ const StyledLI = styled.li`
     list-style: none;
     white-space: nowrap;
     text-align: center;
+    text-decoration: none;
     padding: 5%;
     font-family: 'Fauna One', serif;
     color: #F9F9F9;
@@ -36,8 +38,13 @@ const Header = () => {
             <StyledH1>Water My Plants</StyledH1>
             <StyledNav>
                 <StyledUL>
-                    <StyledLI>My Plants</StyledLI>
-                    <StyledLI>Add Plant</StyledLI>
+                    <Link to="/carddisplay">
+                        <StyledLI>My Plants</StyledLI>
+                    </Link>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link to="/addplant">
+                        <StyledLI>Add Plant</StyledLI>
+                    </Link>
                 </StyledUL>
             </StyledNav>
         </StyledDiv>
