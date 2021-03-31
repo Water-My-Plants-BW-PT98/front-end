@@ -20,6 +20,7 @@ const initialState = {
    switch (action.type) {
 
       case GET_PLANTS:
+         console.log("IN REDUCER")
          return {...state, plants: [...action.payload]} 
       
       case ADD_PLANT:
