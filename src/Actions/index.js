@@ -12,7 +12,7 @@ export const getPlants = () => {
    return dispatch => {
       axiosWithAuth().get(`/plants`)
       .then( (response) => {
-         console.log("IN GET=================",response.data)
+         console.log("IN GET=================",response.data[0])
          dispatch({ type: GET_PLANTS, payload: response.data });
       })
       .catch(err => console.log("GET ERROR:", err));
