@@ -2,30 +2,31 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
+    background-color: #33261D;
 `
 
 const StyledH1 = styled.h1`
     font-family: Cinzel, serif;
+    color: #72B01D;
 `
 
 const StyledNav = styled.nav`
     display: flex;
 `
-
-const StyledButton = styled.button`
+const StyledUL = styled.ul`
     display: flex;
     justify-content: space-between;
-    margin-left: 5%;
-    width: 100%;
+`
+
+const StyledLI = styled.li`
+    list-style: none;
     white-space: nowrap;
     text-align: center;
-    border: none;
+    padding: 5%;
     font-family: 'Fauna One', serif;
+    color: #F9F9F9;
 `
 
 const Header = () => {
@@ -34,8 +35,10 @@ const Header = () => {
         <StyledDiv>
             <StyledH1>Water My Plants</StyledH1>
             <StyledNav>
-                <StyledButton>My Plants</StyledButton>
-                <StyledButton>Add Plant</StyledButton>
+                <StyledUL>
+                    <StyledLI>My Plants</StyledLI>
+                    <StyledLI>Add Plant</StyledLI>
+                </StyledUL>
             </StyledNav>
         </StyledDiv>
     )

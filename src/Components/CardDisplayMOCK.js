@@ -11,6 +11,8 @@ const StyledDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #2F97C1;
+    color: #33261D;
 `
 
 const StyledH2 = styled.h2`

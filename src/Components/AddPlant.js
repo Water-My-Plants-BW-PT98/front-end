@@ -11,6 +11,8 @@ const StyledDiv = styled.div`
     justify-content: center;
     align-items: center;
     font-family: 'Fauna One', serif;
+    background-color: #2F97C1;
+    color: #33261D;
 `
 const StyledH2 = styled.h2`
     font-family: Cinzel, serif;    
