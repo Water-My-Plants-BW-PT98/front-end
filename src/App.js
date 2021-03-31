@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from './Components/Header'
 import Signup from './Components/Signup'
@@ -14,13 +14,15 @@ function App() {
   return (
     <>
       <Header />
-      <Signup />
-      <Login />
-      <AddPlant />
-      <CardDisplayMOCK/>
-      <Switch>
-         <Route path="/EditPlant/:id"><EditPlant/></Route>
-      </Switch>
+      <Router>
+        <Route path="/" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path ="/addplant" component={AddPlant} />
+        <Route path ="/carddisplay" component={CardDisplayMOCK} />
+        <Switch>
+          <Route path="/EditPlant/:id"><EditPlant/></Route>
+        </Switch>
+      </Router>
     </>
   );
 }
