@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components';
 
 //REDUX
@@ -34,6 +35,9 @@ const StyledButton = styled.button`
 `
 
 const AddPlant = (props) => {
+
+   const history = useHistory()
+
     const [plantData, setPlantData] = useState({
         nickname: '',
         species: '',
@@ -50,6 +54,7 @@ const AddPlant = (props) => {
     const onSubmit = event => {
         event.preventDefault();
         props.addPlant(plantData)
+        history.push(`/carddisplay`)
       }
 
     return(
