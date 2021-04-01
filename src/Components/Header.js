@@ -45,6 +45,10 @@ const Header = () => {
                     <Link to="/addplant">
                         <StyledLI>Add Plant</StyledLI>
                     </Link>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link to="/login">
+                        <StyledLI>Login</StyledLI>
+                    </Link>
                 </StyledUL>
             </StyledNav>
         </StyledDiv>

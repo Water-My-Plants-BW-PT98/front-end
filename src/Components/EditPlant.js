@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components';
 
 //REDUX
 import { connect } from 'react-redux';
-import { editPlant } from "../Actions/index";
+import { editPlant, setCurrent } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -33,45 +33,30 @@ const StyledButton = styled.button`
 
 const EditPlant = (props) => {
 
-console.log(props.state.plantsReducer.plants)
-
-   const {id} = useParams();
-
-   const getPlantToEdit = (idToEdit) => {
-     
-      for( let i = 0; i < props.state.plantsReducer.plants.length; i++ ){
-
-         if( props.state.plantsReducer.plants[i].id === parseInt(idToEdit) ){
-            const plantInfo = { 
-               id: props.state.plantsReducer.plants[i].id,
-               nickname: props.state.plantsReducer.plants[i].nickname,
-               species: props.state.plantsReducer.plants[i].species,
-               h2o_frequency: props.state.plantsReducer.plants[i].h2o_frequency
-            }
-            return plantInfo
-         }
-      }
-   }
-
-   const plantToEdit = getPlantToEdit(id)
+   const history = useHistory();
 
     const [plantData, setPlantData] = useState({
-        id: plantToEdit ? plantToEdit.id : null,
-        nickname: plantToEdit ? plantToEdit.nickname : "",
-        species: plantToEdit ? plantToEdit.species : "",
-        h2o_frequency: plantToEdit ? plantToEdit.h2o_frequency : ""
+        id: null,
+        nickname: "",
+        species: "",
+        h2o_frequency: ""
     },[])
 
+    useEffect( () => {
+       setPlantData(props.state.plantsReducer.current)
+    },[props.state.plantsReducer]);
+
     const onChange = event => {
-        setPlantData({
-            ...plantData, 
-            [event.target.name]: event.target.value,
-        })
+       setPlantData({
+          ...plantData, 
+          [event.target.name]: event.target.value,
+       })
     }
 
     const onSubmit = event => {
         event.preventDefault();
         props.editPlant(plantData)
+        history.push('/carddisplay')
     }
 
     return(
@@ -82,19 +67,36 @@ console.log(props.state.plantsReducer.plants)
             <label htmlFor="nicknameInput">
                     Nickname
                 </label>
-                <StyledInput type="text" name="nickname" id="nicknameInput" onChange={onChange}/>
-
-                
+                <StyledInput 
+                     type="text" 
+                     name="nickname" 
+                     id="nicknameInput" 
+                     value={plantData ? plantData.nickname : ""}
+                     onChange={onChange}
+                 />
+   
             <label htmlFor="speciesInput">
                     Species
                 </label>
-                <StyledInput type="text" name="species" id="speciesInput" onChange={onChange}/>
+                <StyledInput 
+                     type="text" 
+                     name="species" 
+                     id="speciesInput" 
+                     value={plantData ? plantData.species : ""}
+                     onChange={onChange}
+                 />
 
                 
             <label htmlFor="h2oInput">
                     Watering Frequency
                 </label>
-                <StyledInput type="text" name="h2o_frequency" id="h2oFrequencyInput" onChange={onChange}/>
+                <StyledInput 
+                     type="text" 
+                     name="h2o_frequency" 
+                     id="h2oFrequencyInput" 
+                     value={plantData ? plantData.h2o_frequency : ""}
+                     onChange={onChange}
+                 />
 
                 <StyledButton>
                     Edit Plant
@@ -108,4 +110,4 @@ const mapStateToProps = (state) => {
    return {state};
  }
 
-export default connect(mapStateToProps, {editPlant})(EditPlant);
+export default connect(mapStateToProps, {editPlant, setCurrent})(EditPlant);

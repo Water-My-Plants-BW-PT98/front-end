@@ -8,21 +8,19 @@ import AddPlant from './Components/AddPlant'
 import EditPlant from './Components/EditPlant'
 
 //FOR DEVELOPMENT PHASE ONLY 3/28/21  MB
-import CardDisplayMOCK from './Components/CardDisplayMOCK'
+import CardDisplay from './Components/CardDisplay'
 
 function App() {
   return (
     <>
       <Header />
-      <Router>
-        <Route path="/" exact component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path ="/addplant" component={AddPlant} />
-        <Route path ="/carddisplay" component={CardDisplayMOCK} />
-        <Switch>
-          <Route path="/EditPlant/:id"><EditPlant/></Route>
+       <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path ="/addplant" component={AddPlant} />
+          <Route path ="/carddisplay" component={CardDisplay} />
+          <Route path="/EditPlant/:id" component={EditPlant} />
         </Switch>
-      </Router>
     </>
   );
 }

@@ -1,34 +1,73 @@
-// import { useState } from 'react'
-// import axios from 'axios'
-// import styled from 'styled-components'
+//import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 
-// const StyledDiv = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-// `
+//REDUX
+import { connect } from 'react-redux';
+import { editPlant, deletePlant, setCurrent } from "../Actions/index";
 
-// const CardDisplay = () => {
+const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fauna One', serif;
+    background-color: #2F97C1;
+    color: #33261D;
+`
 
-//     return(
-//         <StyledDiv>
-//             <h2>My Plants</h2>
-//             <div>
-//                 {props.state.plants (item => {
-//                     if(item.helper_id === null /* && item.status === false*/){
-//                         return <Plant key={item.id}>
-//                             <h3>{item.nickname}</h3>
-//                             <p>{item.species}</p>
-//                             <p>{item.h20Frequency}</p>
-//                             <button>Add Plant</button>
-//                             <button>Remove Plant</button>
-//                         </Plant>
-//                     }
-//                 })}
-//             </div>
-//         </StyledDiv>
-//     )
-// }
+const StyledH2 = styled.h2`
+    font-family: Cinzel, serif;
+`
 
-// export default CardDisplay
+const StyledH3 = styled.h3`
+    text-align: center;
+    font-family: Cinzel, serif;
+`
+
+const StyledP = styled.p`
+    text-align: center;
+`
+
+const Plant = styled.div`
+    border: 1px solid #F9F9F9;
+    margin: 1em;
+    padding:.5em;
+
+    button{
+        margin: .5em;
+    }
+`;
+
+const CardDisplay = (props) => {
+
+   const history  = useHistory();
+
+   const routeToEdit = (plantToEdit) => {
+      props.setCurrent(plantToEdit)
+      history.push(`/EditPlant/${plantToEdit.id}`)
+   }
+
+    return(
+        <StyledDiv>
+            <StyledH2>My Plants</StyledH2>
+            <div>
+                {props.state.plantsReducer.plants.map (item => {
+                        return <Plant key={item.id}>
+                            <StyledH3>{item.nickname}</StyledH3>
+                            <StyledP>{item.species}</StyledP>
+                            <StyledP>{item.h2o_frequency}</StyledP>
+                            <button onClick={()=> routeToEdit(item) }>Edit Plant</button>
+                            <button onClick={() => props.deletePlant(item.id)} >Remove Plant</button>
+                        </Plant>  
+                })}
+            </div>
+        </StyledDiv>
+    )
+}
+
+const mapStateToProps = (state) => {
+   return {state};
+ }
+
+export default connect( mapStateToProps, { editPlant, deletePlant, setCurrent} )(CardDisplay);

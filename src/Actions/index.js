@@ -6,13 +6,16 @@ export const ADD_PLANT = "ADD_PLANT"
 export const EDIT_PLANT = "EDIT_PLANT"
 export const DELETE_PLANT = "DELETE_PLANT"
 
+export const  SET_CURRENT = "SET_CURRENT"
+export const  CLEAR_CURRENT = "CLEAR_CURRENT"
+
 // ACTIONS======================================================
 
 export const getPlants = () => {
    return dispatch => {
       axiosWithAuth().get(`/plants`)
       .then( (response) => {
-         console.log("IN GET=================",response.data[0])
+         //console.log("IN GET=================",response.data)
          dispatch({ type: GET_PLANTS, payload: response.data });
       })
       .catch(err => console.log("GET ERROR:", err));
@@ -53,3 +56,19 @@ export const deletePlant = (plantId) => {
       .catch(err => console.log("DELETE ERROR:", err));
    }
 }
+
+export const setCurrent = (plantToEdit) => {
+   console.log( "IN SETCURRENT", plantToEdit)
+   return dispatch => {
+      dispatch({ type: SET_CURRENT, payload: plantToEdit });
+   }
+}
+
+export const clearCurrent = () => {
+   console.log("in clear current")
+   return dispatch => {
+      dispatch({ type: CLEAR_CURRENT });
+   }
+}
+
+
