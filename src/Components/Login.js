@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../Utils/AxiosWithAuth'
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 //REDUX
 import { connect } from 'react-redux';
-import { getPlants } from "../Actions/index";
+import { getPlants, setCurrentUser } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -24,8 +24,9 @@ const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-`
 
+   
+`
 const StyledInput = styled.input`
     margin: 5%;
     border-radius: 5px;
@@ -34,6 +35,8 @@ const StyledButton = styled.button`
     width: 50%;
     margin: 5%;
 `
+
+
 
 const Login = (props) => {
 
@@ -55,10 +58,14 @@ const Login = (props) => {
         event.preventDefault();
         axiosWithAuth().post("/login", loginData)
             .then((res) => {    
-               console.log("LOGIN SUCCESS", res);     
+               console.log("LOGIN SUCCESS", res.data);     
                window.localStorage.setItem("token", res.data.token);
-               props.getPlants(); // THIS CAN BE MOVED TO THE DISPLAY PAGE ?
-               push("/CardDisplay"); // ADD URL OF "DISPLAY" PAGE OF CARDS
+               props.setCurrentUser({
+                  id: res.data.id,
+                  username: res.data.username,
+               })
+               props.getPlants(); 
+               push("/CardDisplay"); 
             })
             .catch((err) => console.log(err));
     }
@@ -80,6 +87,7 @@ const Login = (props) => {
                 <StyledButton>
                     Login
                 </StyledButton>
+                <Link to="/signup">Not Registered ?</Link>
             </StyledForm>
         </StyledDiv>
     )
@@ -89,4 +97,4 @@ const mapStateToProps = (state) => {
    return {state};
  }
 
-export default connect( mapStateToProps, {getPlants} )(Login);
+export default connect( mapStateToProps, {getPlants, setCurrentUser} )(Login);

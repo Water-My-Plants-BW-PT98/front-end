@@ -1,6 +1,6 @@
 import {axiosWithAuth} from '../Utils/AxiosWithAuth'
 
-// CONST VARIABLES
+// PLANT VARIABLES
 export const GET_PLANTS = "GET_PLANTS"
 export const ADD_PLANT = "ADD_PLANT"
 export const EDIT_PLANT = "EDIT_PLANT"
@@ -8,6 +8,10 @@ export const DELETE_PLANT = "DELETE_PLANT"
 
 export const  SET_CURRENT = "SET_CURRENT"
 export const  CLEAR_CURRENT = "CLEAR_CURRENT"
+
+// USER VARIABLES
+export const EDIT_USER = "EDIT_USER"
+export const SET_CURRENT_USER = "SET_CURRENT_USER"
 
 // ACTIONS======================================================
 
@@ -71,4 +75,25 @@ export const clearCurrent = () => {
    }
 }
 
+// USER ACTIONS=================================================
+
+export const editUser = (userToEdit) => {
+   return dispatch => {
+      axiosWithAuth().put(`/edit/${userToEdit.id}`, userToEdit)
+      .then( (response) => {
+         if( response.status === 200 ){
+            alert(`${userToEdit.username} successfully updated`)
+            dispatch({ type: SET_CURRENT_USER, payload: userToEdit });
+         }
+      })
+      .catch(err => console.log("USER EDIT ERROR:", err));
+   }
+}
+
+export const setCurrentUser = (userToEdit) => {
+   console.log( "IN  USER SET CURRENT", userToEdit)
+   return dispatch => {
+      dispatch({ type: SET_CURRENT_USER, payload: userToEdit });
+   }
+}
 

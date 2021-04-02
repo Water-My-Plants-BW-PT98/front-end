@@ -49,6 +49,10 @@ const Header = () => {
                     <Link to="/login">
                         <StyledLI>Login</StyledLI>
                     </Link>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link to="/EditUser">
+                        <StyledLI>Settings</StyledLI>
+                    </Link>
                 </StyledUL>
             </StyledNav>
         </StyledDiv>

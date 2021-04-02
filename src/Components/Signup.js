@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 //REDUX
 import { connect } from 'react-redux';
-import { getPlants } from "../Actions/index";
+import { getPlants, setCurrentUser } from "../Actions/index";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -58,6 +58,10 @@ const Signup = (props) => {
         .then((res) => {    
            console.log("REGISTER SUCCESS", res);     
            window.localStorage.setItem("token", res.data.token);
+           props.setCurrentUser({
+            id: res.data.id,
+            username: res.data.username,
+         })
            props.getPlants(); // THIS CAN BE MOVED TO THE DISPLAY PAGE ?
            push("/CardDisplay"); // ADD URL OF "DISPLAY" PAGE OF CARDS
         })
@@ -94,4 +98,4 @@ const mapStateToProps = (state) => {
    return {state};
  }
 
-export default connect( mapStateToProps, {getPlants} )(Signup);
+export default connect( mapStateToProps, {getPlants, setCurrentUser} )(Signup);

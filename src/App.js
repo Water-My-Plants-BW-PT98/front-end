@@ -6,6 +6,8 @@ import Signup from './Components/Signup'
 import Login from './Components/Login'
 import AddPlant from './Components/AddPlant'
 import EditPlant from './Components/EditPlant'
+import EditUser from './Components/EditUser'
+
 
 //FOR DEVELOPMENT PHASE ONLY 3/28/21  MB
 import CardDisplay from './Components/CardDisplay'
@@ -19,7 +21,8 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path ="/addplant" component={AddPlant} />
           <Route path ="/carddisplay" component={CardDisplay} />
-          <Route path="/EditPlant/:id" component={EditPlant} />
+          <Route exact path="/EditPlant/:id" component={EditPlant} />
+          <Route exact path="/EditUser" component={EditUser} />
         </Switch>
     </>
   );
