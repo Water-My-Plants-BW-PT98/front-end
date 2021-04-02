@@ -39,6 +39,12 @@ const Plant = styled.div`
     }
 `;
 
+const CardContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+`;
+
 const CardDisplay = (props) => {
 
    const history  = useHistory();
@@ -51,7 +57,7 @@ const CardDisplay = (props) => {
     return(
         <StyledDiv>
             <StyledH2>My Plants</StyledH2>
-            <div>
+            <CardContainer>
                 {props.state.plantsReducer.plants.map (item => {
                         return <Plant key={item.id}>
                             <StyledH3>{item.nickname}</StyledH3>
@@ -61,7 +67,7 @@ const CardDisplay = (props) => {
                             <button onClick={() => props.deletePlant(item.id)} >Remove Plant</button>
                         </Plant>  
                 })}
-            </div>
+            </CardContainer>
         </StyledDiv>
     )
 }
